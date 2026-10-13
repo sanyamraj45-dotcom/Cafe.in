@@ -1,1 +1,180 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Cafe | 3D AR Menu</title>
+
+<script type="module"
+src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+</script>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #10110f;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 28px 16px;
+  text-align: center;
+  background: #20291b;
+}
+
+header small {
+  color: #d6f19a;
+  letter-spacing: 3px;
+}
+
+main {
+  max-width: 700px;
+  margin: auto;
+  padding: 18px;
+}
+
+.hero {
+  text-align: center;
+  padding: 28px 8px;
+}
+
+.food {
+  font-size: 100px;
+  display: inline-block;
+  filter: drop-shadow(0 20px 16px #8aa45b77);
+  animation: pop 2.2s infinite ease-in-out;
+}
+
+@keyframes pop {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.08); }
+}
+
+.card {
+  background: #20231e;
+  border: 1px solid #3b4234;
+  padding: 18px;
+  margin: 18px 0;
+  border-radius: 20px;
+}
+
+p {
+  color: #d0d0c9;
+  line-height: 1.6;
+}
+
+.price {
+  color: #d6f19a;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+button {
+  background: #d6f19a;
+  color: #17200e;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+model-viewer {
+  width: 100%;
+  height: 320px;
+  background: #30352b;
+  border-radius: 14px;
+}
+
+.ar-button {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+footer {
+  text-align: center;
+  color: #aaa;
+  padding: 25px;
+}
+</style>
+</head>
+
+<body>
+<header>
+  <small>FRESH • TASTY • INTERACTIVE</small>
+  <h1>Urban Cafe</h1>
+  <p>Discover your next favourite dish.</p>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="food">🍔</div>
+    <h2>Food that pops!</h2>
+    <p>Explore our interactive 3D menu.</p>
+  </section>
+
+  <section class="card">
+    <h2>Classic Burger</h2>
+    <p>Fresh vegetables, cheese and a toasted bun.</p>
+    <div class="price">₹149</div>
+    <p>Example item and price for this demo.</p>
+    <button onclick="order('Classic Burger')">
+      Order on WhatsApp
+    </button>
+  </section>
+
+  <section class="card">
+    <h2>See a 3D model</h2>
+    <p>Drag to rotate, pinch to zoom, or try AR on a compatible phone.</p>
+
+    <model-viewer
+      src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb"
+      alt="Sample 3D avocado"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      ar
+      ar-modes="scene-viewer webxr"
+      ar-placement="floor"
+      exposure="1">
+      <button slot="ar-button" class="ar-button">
+        View in your space
+      </button>
+    </model-viewer>
+
+    <p>This is a sample avocado, not a 3D burger.</p>
+  </section>
+
+  <section class="card">
+    <h2>More favourites</h2>
+    <p>🍕 Margherita Pizza — ₹199</p>
+    <p>🍰 Chocolate Cake — ₹99</p>
+    <p>☕ Cold Coffee — ₹89</p>
+    <p>Example menu items and prices.</p>
+  </section>
+</main>
+
+<footer>
+  3D AR Menu Demo
+</footer>
+
+<script>
+function order(item) {
+  const message = encodeURIComponent(
+    "Hello Urban Cafe, I want to order " + item
+  );
+  window.open(
+    "https://wa.me/?text=" + message,
+    "_blank"
+  );
+}
+</script>
+</body>
+</html>
+
